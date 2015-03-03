@@ -114,7 +114,7 @@ function checkForScheduledNotices(dateParts) {
 function displayTOTHNotice(mins,secs) {
     $('#footer').css('color', 'yellow');
     secsToTOTH = ((59 - mins) * 60) + (60 - secs);
-    secsToTOTH = secsToTOTH - 10; // News intro
+    secsToTOTH = secsToTOTH - 9; // News intro
     if (secsToTOTH < 0) {
         $('#footer').html('&quot;This is community radio in your city, Cambridge 105&quot;');
     }
@@ -150,7 +150,7 @@ function loadSchedule() {
     thisProgEnds = 0;
     thisProgIsLive = false;
     nextProgType = "";
-    timeNow = new Date().getTime();
+    timeNow = new Date().getTime() + 5000; // Pretend we're 5 secs in the future to avoid race condition if we load exactly when a prog ends
     $.getJSON("schedule.js?nocache=" + (new Date()).getTime(), function (sched) {
         $.each(sched, function (key, progInfo) {
             //$.each(progInfo, function (progInfoKey, progInfoValue) {
